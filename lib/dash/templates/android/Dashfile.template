@@ -1,0 +1,23 @@
+# Build specs. Platform can be :ios or :android.
+platform :android,
+         :product_path => '',
+         :product_name => '',
+         :build_tool => :maven
+
+# Pre-build and post-build hooks. Bundled hooks are generator of web services
+# consumer and localization assets. Possible values: :none, :all.
+hooks :active => :none
+
+# Build targets. You can define several targets identified by the team whom the
+# build is for.
+target 'team/speedjab' do
+  # Compile-time configuration. Possible values: :debug, :release.
+  configuration :release
+  # Location of signing assets. It can be :fixed, :local, :svn or :s3.
+  signing_assets :local
+  # Upload platform of the build. Needless to say.
+  upload :hockeyapp,
+         :app_id => '',
+         :team_token => '',
+         :tags => ['speedjab']
+end
